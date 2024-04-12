@@ -6,7 +6,7 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:31:09 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/12 16:19:08 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:01:04 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,30 @@ char	*read_file(int fd, char *result)
 	char	*buffer;
 	int		byte_read;
 
+	buffer = NULL;
 	if (!result)
 		result = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	byte_read = 1;
 	while (byte_read > 0)
 	{
+		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read == -42)
 		{
+			perror("Error reading file");
 			free(buffer);
+			free(result);
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		else if (byte_read == 0)
+		{
+			free(buffer);
+			return (result);
+		}
 		result = ft_free(result, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
-	free(buffer);
 	return (result);
 }
 
