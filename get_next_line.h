@@ -6,7 +6,7 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:29:00 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/08 14:02:15 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:51:48 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);

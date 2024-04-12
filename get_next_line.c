@@ -6,7 +6,7 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:31:09 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/08 13:58:51 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:19:08 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,33 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
+	buffer = ft_delete(buffer);
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
+	{
+		free (buffer);	
 		return (NULL);
+	}
 	buffer = read_file(fd, buffer);
 	if (!buffer)
 		return (NULL);
 	line = ft_line(buffer);
-	buffer = ft_delete(buffer);
 	return (line);
+}
+
+int main (void)
+{
+	FILE *file = fopen("file.txt", "r");
+	if (file == NULL)
+	{
+		perror("I cannot open this file");
+		return (1);
+	}
+	char *line = NULL;
+	while ((line = get_next_line(fileno(file))) != NULL)
+	{
+		printf("I read this lines: %s\n", line);
+		free(line);
+	}
+	fclose(file);
+	return (0);
 }
