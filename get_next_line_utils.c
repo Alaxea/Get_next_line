@@ -6,83 +6,81 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:32:11 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/08 13:40:56 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:06:33 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strchr(char *s, int c)
 {
-	size_t	len;
-	char	*result;
-	int	i;
-	int	j;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if (c == 0)
+	{
+		i = ft_strlen((char *)s);
+		return (&s[i]);
+	}
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (&s[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_join_strings(char *dest, char *str1, char *str2)
+{
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	result = (char *)malloc(len + 1);
-	if (!s1 || !s2 || !result)
-		return (NULL);
-	while (s1[i] != 0)
+	while (str1 && str1[i])
 	{
-		result[i] = s1[i];
+		dest[i] = str1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != 0)
+	while (str2 && str2[j])
 	{
-		result[i] = s2[j];
-		i++;
+		dest[i + j] = str2[j];
 		j++;
 	}
-	result[len] = 0;
-	return (result);
+	dest[i + j] = '\0';
+	return (dest);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char *start, char *buff)
 {
-	char	*str;
-	int		i;
+	char	*ptr;
 
-	str = (char *)s;
-	i = 0;
-	while (str[i] != c && str[i] != 0)
-		str++;
-	if (*str == c)
-		return (str);
-	else
+	if (!start)
+	{
+		start = (char *)malloc(1);
+		start[0] = '\0';
+	}
+	if (!start || !buff)
 		return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*tmp_ptr;
-
-	tmp_ptr = (unsigned char *)s;
-	while (n--)
-		*tmp_ptr++ = 0;
-}
-
-void	*ft_calloc(size_t num_elements, size_t element_size)
-{
-	void	*tmp_ptr;
-
-	if (num_elements >= 4294967295 || element_size >= 4294967295)
+	ptr = (char *)malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
+	if (!ptr)
 		return (NULL);
-	tmp_ptr = malloc(num_elements * element_size);
-	if (!tmp_ptr)
-		return (NULL);
-	ft_bzero(tmp_ptr, num_elements * element_size);
-	return (tmp_ptr);
+	ptr = ft_join_strings(ptr, start, buff);
+	free(start);
+	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 19:29:00 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/08 15:51:48 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:58:26 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t num_elements, size_t element_size);
+size_t	ft_strlen(char *s);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *start, char *buff);
+char	*ft_join_strings(char *dest, char *str1, char *str2);
+char	*ft_read_line(char *start);
+char	*ft_after_start(char *start);
 
 #endif
