@@ -6,13 +6,13 @@
 /*   By: astefans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:33:45 by astefans          #+#    #+#             */
-/*   Updated: 2024/04/18 10:13:54 by astefans         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:21:42 by astefans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read_line(char *start)
+static char	*ft_read_line(char *start)
 {
 	int		i;
 	char	*line;
@@ -39,7 +39,7 @@ char	*ft_read_line(char *start)
 	return (line);
 }
 
-char	*ft_after_start(char *start)
+static char	*ft_after_start(char *start)
 {
 	char	*new_buffer;
 	int		i;
