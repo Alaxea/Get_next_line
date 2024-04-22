@@ -26,7 +26,5 @@ size_t	ft_strlen(char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *start, char *buff);
 char	*ft_join_strings(char *dest, char *str1, char *str2);
-char	*ft_read_line(char *start);
-char	*ft_after_start(char *start);
 
 #endif
