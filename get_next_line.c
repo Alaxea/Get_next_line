@@ -96,8 +96,8 @@ char	*get_next_line(int fd)
 	start_str = ft_after_start(start_str);
 	return (buff);
 }
-
-/*int main (void)
+/*
+int main (void)
 {
 	FILE *file = fopen("file.txt", "r");
 	if (file == NULL)
